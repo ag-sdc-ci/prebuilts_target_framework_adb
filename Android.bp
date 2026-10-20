@@ -1,0 +1,71 @@
+// Auto-generated Blueprint for packages/modules/adb (framework extractive)
+// Staged from Extractive APEX package: org.blisslabs.ag.ext.adbd
+
+package {
+    default_applicable_licenses: ["packages_modules_adb_license"],
+}
+
+license {
+    name: "packages_modules_adb_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["SPDX-license-identifier-Apache-2.0"],
+    license_text: ["NOTICE"],
+}
+
+filegroup {
+    name: "adbrootservice_aidl",
+    srcs: [
+        "aidl/android/adbroot/IADBRootService.aidl",
+    ],
+    path: "aidl",
+}
+
+cc_prebuilt_library_shared {
+    name: "libadb_pairing_connection",
+    arch: {
+        x86_64: {
+            srcs: ["lib64/libadb_pairing_connection.so"],
+        },
+    },
+    export_include_dirs: ["pairing_connection/include"],
+    prefer: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.adbd",
+    ],
+}
+
+cc_prebuilt_library_shared {
+    name: "libadb_pairing_server",
+    arch: {
+        x86_64: {
+            srcs: ["lib64/libadb_pairing_server.so"],
+        },
+    },
+    export_include_dirs: ["pairing_connection/include"],
+    prefer: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.adbd",
+    ],
+}
+
+cc_prebuilt_library_shared {
+    name: "libadbconnection_client",
+    arch: {
+        x86_64: {
+            srcs: ["lib64/libadbconnection_client.so"],
+        },
+    },
+    export_include_dirs: ["libs/adbconnection/include"],
+    prefer: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.adbd",
+    ],
+}
+
+cc_library_headers {
+    name: "libadbconnection_headers",
+    export_include_dirs: ["libs/adbconnection/include"],
+}
